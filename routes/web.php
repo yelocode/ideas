@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IdeaController;
 use App\Http\Controllers\ProfileController;
@@ -29,7 +30,8 @@ Route::put('/ideas/{idea}', [IdeaController::class , 'update'] )->name('ideas.up
 
 Route::delete('/ideas/{idea}', [IdeaController::class , 'destroy'] )->name('ideas.destroy');
 
-// ideas/4
+Route::post('/ideas/{idea}/comments', [CommentController::class , 'store'] )->name('ideas.comments.store');
+
 
 Route::get('/terms', function(){
     return view('terms');
