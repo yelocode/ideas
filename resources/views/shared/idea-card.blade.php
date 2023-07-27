@@ -3,26 +3,31 @@
         <div class="d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center">
                 <img style="width:50px" class="me-2 avatar-sm rounded-circle"
-                    src="https://api.dicebear.com/6.x/fun-emoji/svg?seed={{ $idea->user->name }}" alt="{{ $idea->user->name }}">
+                    src="https://api.dicebear.com/6.x/fun-emoji/svg?seed={{ $idea->user->name }}"
+                    alt="{{ $idea->user->name }}">
                 <div>
                     <h5 class="card-title mb-0"><a href="#"> {{ $idea->user->name }}
                         </a></h5>
                 </div>
             </div>
-            <div>
-                <form method="POST" action="{{ route('ideas.destroy', $idea->id) }}">
-                    @csrf
-                    @method('delete')
-                    <a class="mx-2" href="{{ route('ideas.edit', $idea->id) }}"> Edit </a>
-                    <a href="{{ route('ideas.show', $idea->id) }}"> View </a>
-                    <button class="ms-1 btn btn-danger btn-sm"> X </button>
-                </form>
+            <div class="d-flex">
+                <a href="{{ route('ideas.show', $idea->id) }}"> View </a>
+                @auth()
+                    @if (Auth::id() === $idea->user_id)
+                        <a class="mx-2" href="{{ route('ideas.edit', $idea->id) }}"> Edit </a>
+                        <form method="POST" action="{{ route('ideas.destroy', $idea->id) }}">
+                            @csrf
+                            @method('delete')
+                            <button class="ms-1 btn btn-danger btn-sm"> X </button>
+                        </form>
+                    @endif
+                @endauth
             </div>
         </div>
     </div>
     <div class="card-body">
         @if ($editing ?? false)
-            <form action="{{ route('ideas.update',$idea->id) }}" method="post">
+            <form action="{{ route('ideas.update', $idea->id) }}" method="post">
                 @csrf
                 @method('put')
                 <div class="mb-3">
