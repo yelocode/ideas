@@ -11,18 +11,18 @@
             <ul class="navbar-nav">
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/login">Login</a>
+                        <a class="nav-link active" aria-current="page" href="{{ route('login') }}">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/register">Register</a>
+                        <a class="nav-link" href="{{ route('register') }}">Register</a>
                     </li>
                 @endguest
                 @auth()
                     <li class="nav-item">
-                        <a class="nav-link" href="/profile">{{ Auth::user()->name }} </a>
+                        <a class="nav-link" href="{{ route('profile') }}">{{ Auth::user()->name }} </a>
                     </li>
                     <li class="nav-item">
-                        <form action="{{ route('logout') }}" method="POST"> 
+                        <form action="{{ route('logout') }}" method="POST">
                             @csrf
                             <button class="btn btn-danger btn-sm" type="submit"> Logout </button>
                         </form>

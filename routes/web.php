@@ -30,6 +30,8 @@ Route::resource('ideas.comments' , CommentController::class)->only(['store'])->m
 
 Route::resource('users',UserController::class)->only('show','edit','update')->middleware('auth');
 
+Route::get('profile',[UserController::class,'profile'])->middleware('auth')->name('profile');
+
 Route::get('/terms', function () {
     return view('terms');
 });
