@@ -8,8 +8,6 @@ use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
-
-
     /**
      * Display the specified resource.
      */
@@ -25,6 +23,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        $this->authorize('update', $user);
+
         $editing = true;
         $ideas = $user->ideas()->paginate(5);
 
@@ -36,6 +36,8 @@ class UserController extends Controller
      */
     public function update(User $user)
     {
+        $this->authorize('update', $user);
+
         $validated = request()->validate(
             [
                 'name' => 'required|min:3|max:40',
@@ -44,8 +46,8 @@ class UserController extends Controller
             ]
         );
 
-        if(request()->has('image')){
-            $imagePath = request()->file('image')->store('profile','public');
+        if (request()->has('image')) {
+            $imagePath = request()->file('image')->store('profile', 'public');
             $validated['image'] = $imagePath;
 
             Storage::disk('public')->delete($user->image ?? '');

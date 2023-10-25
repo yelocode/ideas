@@ -36,7 +36,7 @@ class AuthController extends Controller
         );
 
         Mail::to($user->email)
-        ->send(new WelcomeEmail($user));
+            ->send(new WelcomeEmail($user));
 
         return redirect()->route('dashboard')->with('success', 'Account created Successfully!');
     }
@@ -66,7 +66,8 @@ class AuthController extends Controller
         ]);
     }
 
-    public function logout(){
+    public function logout()
+    {
         auth()->logout();
 
         request()->session()->invalidate();
