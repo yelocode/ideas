@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateIdeaRequest;
 use App\Http\Requests\UpdateIdeaRequest;
 use App\Models\Idea;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class IdeaController extends Controller
