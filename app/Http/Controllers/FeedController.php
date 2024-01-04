@@ -15,13 +15,13 @@ class FeedController extends Controller
 
         $followingIDs = auth()->user()->followings()->pluck('user_id');
 
-        $ideas = Idea::whereIn('user_id',$followingIDs)->latest();
+        $ideas = Idea::whereIn('user_id', $followingIDs)->latest();
 
-        if(request()->has('search')){
-            $ideas = $ideas->where('content','like', '%' . request()->get('search','') . '%');
+        if (request()->has('search')) {
+            $ideas = $ideas->search(request('search', ''));
         }
 
-        return view('dashboard',[
+        return view('dashboard', [
             'ideas' => $ideas->paginate(5)
         ]);
     }
