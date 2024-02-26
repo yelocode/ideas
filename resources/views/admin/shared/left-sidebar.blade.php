@@ -4,12 +4,20 @@
             <li class="nav-item">
                 <a class="{{ Route::is('admin.dashboard') ? 'text-white bg-primary rounded' : '' }} nav-link"
                     href="{{ route('admin.dashboard') }}">
-                    <span>Dashboard</span></a>
+                    <span>Dashboard</span>
+                </a>
             </li>
             <li class="nav-item">
-                <a class="{{ Route::is('admin.users') ? 'text-white bg-primary rounded' : '' }} nav-link"
-                    href="{{ route('admin.users') }}">
-                    <span>Users</span></a>
+                <a class="{{ Route::is('admin.users.index') ? 'text-white bg-primary rounded' : '' }} nav-link"
+                    href="{{ route('admin.users.index') }}">
+                    <span>Users</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="{{ Route::is('admin.ideas.index') ? 'text-white bg-primary rounded' : '' }} nav-link"
+                    href="{{ route('admin.ideas.index') }}">
+                    <span>Ideas</span>
+                </a>
             </li>
         </ul>
     </div>

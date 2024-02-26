@@ -1,39 +1,39 @@
 @extends('layout.app')
-@section('title', 'Users | Admin Dashboard')
+@section('title', 'Ideas | Admin Dashboard')
 @section('content')
     <div class="row">
         <div class="col-3">
             @include('admin.shared.left-sidebar')
         </div>
         <div class="col-9">
-            <h1>Users</h1>
+            <h1>Ideas</h1>
             <table class="table table-striped mt-3">
                 <thead class="table-dark">
                     <tr>
                         <th>ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Joined At</th>
+                        <th>User</th>
+                        <th>Content</th>
+                        <th>Created At</th>
                         <th>#</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($users as $user)
+                    @foreach ($ideas as $idea)
                         <tr>
-                            <td>{{ $user->id }}</td>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>{{ $user->created_at->toDateString() }}</td>
+                            <td>{{ $idea->id }}</td>
+                            <td>{{ $idea->user->name }}</td>
+                            <td>{{ $idea->content }}</td>
+                            <td>{{ $idea->created_at->toDateString() }}</td>
                             <td>
-                                <a href="{{ route('users.show', $user) }}">View</a>
-                                <a href="{{ route('users.edit', $user) }}">Edit</a>
+                                <a href="{{ route('ideas.show', $idea) }}">View</a>
+                                <a href="{{ route('ideas.edit', $idea) }}">Edit</a>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
             <div>
-                {{ $users->links() }}
+                {{ $ideas->links() }}
             </div>
         </div>
     </div>
